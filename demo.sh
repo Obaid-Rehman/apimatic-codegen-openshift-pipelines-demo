@@ -3,7 +3,7 @@ set -e -u -o pipefail
 
 declare -r SCRIPT_DIR=$(cd -P $(dirname $0) && pwd)
 
-declare -r NAMESPACE=${NAMESPACE:-apimatic-codegen-openshift-demo}
+declare -r NAMESPACE=${NAMESPACE:-apimatic-codegen-openshift-pipelines-demo}
 
 _log() {
     local level=$1; shift
