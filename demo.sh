@@ -152,7 +152,7 @@ demo.validate_pipelinerun() {
 
 demo.url() {
   echo "Click following URL to access the application"
-  oc -n "$NAMESPACE" get route pipelines-vote-ui --template='http://{{.spec.host}} '
+  oc -n "$NAMESPACE" get route apimatic-dx-portal --template='http://{{.spec.host}} '
   echo
 }
 
