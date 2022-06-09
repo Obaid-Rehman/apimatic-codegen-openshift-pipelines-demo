@@ -1,0 +1,9 @@
+toc:
+  - group: Getting Started
+    items:
+      - page: Introduction
+        file: readme.md
+  - generate: API Endpoints
+    from: endpoints
+  - generate: Models
+    from: models
