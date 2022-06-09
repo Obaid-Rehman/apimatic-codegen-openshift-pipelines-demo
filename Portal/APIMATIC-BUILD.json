@@ -2,7 +2,7 @@
   "$schema": "https://titan.apimatic.io/api/build/schema",
   "buildFileVersion": "1",
   "generatePortal": {
-    "logoUrl": "/static/images/logo.png.png",
+    "logoUrl": "/static/images/logo.png",
     "logoLink": "https://www.apimatic.io",
     "debug": {
       "publishReport": true
