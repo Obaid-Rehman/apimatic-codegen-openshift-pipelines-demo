@@ -8,7 +8,7 @@ spec:
     description: The git repository url
   - name: git-revision
     description: The git revision
-    default: master
+    default: main
   - name: git-repo-name
     description: The name of the deployment to be created / patched
 
@@ -29,7 +29,7 @@ spec:
       - name: git-revision
         value: $(tt.params.git-revision)
       - name: IMAGE
-        value: image-registry.openshift-image-registry.svc:5000/apimatic-codegen-openshift-pipelines-demo/$(tt.params.git-repo-name)
+        value: image-registry.openshift-image-registry.svc:5000/$(context.pipelineRun.namespace)/$(tt.params.git-repo-name)
       workspaces:
       - name: shared-workspace
         volumeClaimTemplate:
