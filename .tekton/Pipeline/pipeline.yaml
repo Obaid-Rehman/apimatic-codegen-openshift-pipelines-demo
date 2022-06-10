@@ -58,7 +58,7 @@ spec:
       workspace: shared-workspace
     runAfter:
     - zip-build-folder
-  - name: build-image
+  - name: build-dx-portal-image
     taskRef:
       name: buildah
       kind: ClusterTask
@@ -77,7 +77,7 @@ spec:
     - name: source
       workspace: shared-workspace
     runAfter:
-    - build-image
+    - build-dx-portal-image
   - name: update-deployment
     taskRef:
       name: update-deployment
