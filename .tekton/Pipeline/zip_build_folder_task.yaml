@@ -9,7 +9,7 @@ spec:
     - name: portal_dir
       description: The directory in source that contains APIMatic portal build file and associated assets
       type: string
-      default: "Portal"
+      default: Portal
   steps:
     - name: zip
       image: quay.io/apimatic/http-server-base:stable
@@ -18,4 +18,5 @@ spec:
       args:
         - |-
           echo Zipping the $(inputs.params.portal_dir) directory
-          zip -r apimatic.zip $(inputs.params.portal_dir)
+          cd $(inputs.params.portal_dir)
+          zip -r /workspace/apimatic.zip .
