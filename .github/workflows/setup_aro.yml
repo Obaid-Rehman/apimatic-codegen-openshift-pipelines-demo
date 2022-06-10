@@ -1,0 +1,80 @@
+name: Set Up RedHat OpenShift on Azure
+
+on:
+  workflow_dispatch:
+  
+env:
+
+  LOCATION: eastus
+  RESOURCEGROUP: aro-rg
+  CLUSTER: cluster
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    
+    steps:
+    
+      - name: Azure Login
+        uses: azure/login@v1
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+          
+      - name: Prepare RedHat pull-secret.txt
+        run: echo ${{ secrets.RH_PULL_SECRET }} > pull-secret.txt
+          
+      - name: Azure CLI script
+        uses: azure/CLI@v1
+        with:
+          azcliversion: 2.30.0
+          inlineScript: |
+            az account set --subscription ${{ secrets.AZ_SUBSCRIPTION_ID }}
+            
+            az provider register -n Microsoft.RedHatOpenShift --wait
+            
+            az provider register -n Microsoft.Compute --wait
+            
+            az provider register -n Microsoft.Storage --wait
+            
+            az provider register -n Microsoft.Authorization --wait
+            
+            az group create \
+               --name ${{ env.RESOURCEGROUP }} \
+               --location ${{ env.LOCATION }}
+              
+            az network vnet create \
+               --resource-group ${{ env.RESOURCEGROUP }} \
+               --name aro-vnet \
+               --address-prefixes 10.0.0.0/22
+               
+            az network vnet subnet create \
+               --resource-group ${{ env.RESOURCEGROUP }} \
+               --vnet-name aro-vnet \
+               --name master-subnet \
+               --address-prefixes 10.0.0.0/23 \
+               --service-endpoints Microsoft.ContainerRegistry
+               
+            az network vnet subnet create \
+               --resource-group ${{ env.RESOURCEGROUP }} \
+               --vnet-name aro-vnet \
+               --name worker-subnet \
+               --address-prefixes 10.0.2.0/23 \
+               --service-endpoints Microsoft.ContainerRegistry
+               
+            az network vnet subnet update \
+               --name master-subnet \
+               --resource-group ${{ env.RESOURCEGROUP }} \
+               --vnet-name aro-vnet \
+               --disable-private-link-service-network-policies true
+              
+            az aro create \
+               --resource-group ${{ env.RESOURCEGROUP }} \
+               --name ${{ env.CLUSTER }} \
+               --vnet aro-vnet \
+               --master-subnet master-subnet \
+               --worker-subnet worker-subnet \
+               --client-id ${{ secrets.AZ_CLIENT_ID }} \
+               --client-secret ${{ secrets.AZ_CLIENT_SECRET }} \
+               --pull-secret @pull-secret.txt \
+               --no-wait
+            
