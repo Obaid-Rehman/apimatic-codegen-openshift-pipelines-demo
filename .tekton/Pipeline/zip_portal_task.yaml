@@ -11,12 +11,11 @@ spec:
       type: string
       default: "Portal"
   steps:
-    - name: apply
-      image: image-registry.openshift-image-registry.svc:5000/openshift/cli:latest
+    - name: zip
+      image: quay.io/apimatic/http-server-base:stable
       workingDir: /workspace/source
       command: ["/bin/bash", "-c"]
       args:
         - |-
           echo Zipping the $(inputs.params.portal_dir) directory
-          oc apply -f $(inputs.params.manifest_dir)
-          echo -----------------------------------
+          zip -r apimatic.zip $(inputs.params.portal_dir)
