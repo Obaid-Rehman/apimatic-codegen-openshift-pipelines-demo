@@ -93,6 +93,8 @@ demo.setup-pipeline() {
   info "Apply pipeline tasks"
   OC apply -f .tekton/Pipeline/apply_manifest_task.yaml
   OC apply -f .tekton/Pipeline/update_deployment_task.yaml
+  OC apply -f .tekton/Pipeline/get-portal-zip.yaml
+  OC apply -f .tekton/Pipeline/zip_build_folder_task.yaml
 
   info "Creating workspace"
   OC apply -f .tekton/Pipeline/persistent_volume_claim.yaml
@@ -123,6 +125,9 @@ demo.run() {
     -p deployment-name=apimatic-dx-portal-demo \
     -p git-url=https://github.com/Obaid-Rehman/apimatic-codegen-openshift-pipelines-demo.git \
     -p IMAGE="image-registry.openshift-image-registry.svc:5000/${NAMESPACE}/apimatic-dx-portal" \
+    
+    -p apimatic-codegen-service="" \
+    
     --use-param-defaults \
     --showlog=true
 
