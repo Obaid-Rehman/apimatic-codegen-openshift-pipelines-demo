@@ -12,6 +12,8 @@ spec:
     value: https://github.com/Obaid-Rehman/apimatic-codegen-openshift-pipelines-demo.git
   - name: IMAGE
     value: image-registry.openshift-image-registry.svc:5000/$(context.pipelineRun.namespace)/apimatic-dx-portal
+  - name: apimatic-codegen-service
+    value: DUMMY_PLACEHOLDER_FOR_NOW
   workspaces:
   - name: shared-workspace
     volumeClaimTemplate:
