@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: apimatic-dx-portal-demo
+  name: apimatic-dx-portal-demo
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: apimatic-dx-portal-demo
+  template:
+    metadata:
+      labels:
+        app: apimatic-dx-portal-demo
+    spec:
+      containers:
+        - image: quay.io/openshift-pipeline/apimatic-dx-portal:latest
+          imagePullPolicy: Always
+          name: apimatic-dx-portal
+          ports:
+            - containerPort: 9080
+              protocol: TCP
