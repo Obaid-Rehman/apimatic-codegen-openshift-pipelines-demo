@@ -73,8 +73,6 @@ jobs:
                --vnet aro-vnet \
                --master-subnet master-subnet \
                --worker-subnet worker-subnet \
-               --client-id ${{ secrets.AZ_CLIENT_ID }} \
-               --client-secret ${{ secrets.AZ_CLIENT_SECRET }} \
                --pull-secret @pull-secret.txt \
                --no-wait
             
