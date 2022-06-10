@@ -6,7 +6,7 @@ on:
 env:
 
   LOCATION: eastus
-  RESOURCEGROUP: aro-rg
+  RESOURCEGROUP: OpenShiftTest
   CLUSTER: cluster
 
 jobs:
