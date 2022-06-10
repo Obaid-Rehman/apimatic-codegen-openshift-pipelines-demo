@@ -49,17 +49,15 @@ spec:
     - fetch-repository
   - name: get-portal-zip
     taskRef:
-      name: curl
-      kind: ClusterTask
+      name: get-portal-zip
     params:
-    - name: url
-      value: $(params.apimatic-codegen-service)/api/build
-    - name: options
-      value:
-      - "-X"
-      - "POST"
-      - "-F"
-      - "file=apimatic.zip"
+    - name: apimatic-codegen-service
+      value: $(params.apimatic-codegen-service)
+    workspaces:
+    - name: source
+      workspace: shared-workspace
+    runAfter:
+    - zip-build-folder
   - name: build-image
     taskRef:
       name: buildah
@@ -71,7 +69,7 @@ spec:
     - name: source
       workspace: shared-workspace
     runAfter:
-    - zip-build-folder
+    - get-portal-zip
   - name: apply-manifests
     taskRef:
       name: apply-manifests
