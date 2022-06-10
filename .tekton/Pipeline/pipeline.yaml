@@ -19,6 +19,9 @@ spec:
   - name: IMAGE
     type: string
     description: image to be build from the code
+  - name: apimatic-codegen-service
+    type: string
+    description: The OpenShift DNS url of the APIMatic CodeGen service running in the cluster
   tasks:
   - name: fetch-repository
     taskRef:
@@ -44,6 +47,19 @@ spec:
       workspace: shared-workspace
     runAfter:
     - fetch-repository
+  - name: get-portal-zip
+    taskRef:
+      name: curl
+      kind: ClusterTask
+    params:
+    - name: url
+      value: $(params.apimatic-codegen-service)/api/build
+    - name: options
+      value:
+      - "-X"
+      - "POST"
+      - "-F"
+      - "file=apimatic.zip"
   - name: build-image
     taskRef:
       name: buildah
