@@ -14,11 +14,6 @@ jobs:
     runs-on: ubuntu-latest
     
     steps:
-    
-      - name: Azure Login
-        uses: azure/login@v1
-        with:
-          creds: ${{ secrets.AZURE_CREDENTIALS }}
           
       - name: Prepare RedHat pull-secret.txt
         run: echo ${{ secrets.RH_PULL_SECRET }} > pull-secret.txt
@@ -28,6 +23,8 @@ jobs:
         with:
           azcliversion: 2.30.0
           inlineScript: |
+            az login -u ${{ secrets.AZ_USER }} -p ${{ secrets.AZ_PASSWORD }}
+            
             az account set --subscription ${{ secrets.AZ_SUBSCRIPTION_ID }}
             
             az provider register -n Microsoft.RedHatOpenShift --wait
