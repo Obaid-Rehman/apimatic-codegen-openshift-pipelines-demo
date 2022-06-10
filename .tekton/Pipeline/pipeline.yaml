@@ -36,6 +36,14 @@ spec:
       value: "true"
     - name: revision
       value: $(params.git-revision)
+  - name: zip-portal
+    taskRef:
+      name: zip-portal
+    workspaces:
+    - name: source
+      workspace: shared-workspace
+    runAfter:
+    - fetch-repository
   - name: build-image
     taskRef:
       name: buildah
@@ -47,7 +55,7 @@ spec:
     - name: source
       workspace: shared-workspace
     runAfter:
-    - fetch-repository
+    - zip-portal
   - name: apply-manifests
     taskRef:
       name: apply-manifests
