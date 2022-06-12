@@ -4,7 +4,7 @@ metadata:
   name: zip-build-folder
 spec:
   workspaces:
-  - name: source
+  - name: buildfolder
   params:
     - name: portal_dir
       description: The directory in source that contains APIMatic portal build file and associated assets
@@ -13,7 +13,7 @@ spec:
   steps:
     - name: zip
       image: quay.io/apimatic/http-server-base:stable
-      workingDir: /workspace/$(inputs.params.portal_dir)
+      workingDir: /workspace/buildfolder/$(inputs.params.portal_dir)
       command: ["/bin/bash", "-c"]
       args:
         - |-
