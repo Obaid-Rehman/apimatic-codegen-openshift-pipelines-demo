@@ -1,7 +1,7 @@
 apiVersion: triggers.tekton.dev/v1beta1
 kind: Trigger
 metadata:
-  name: apimatic-codegen-operator-demo-trigger
+  name: apimatic-codegen-openshift-pipelines-demo
 spec:
   serviceAccountName: pipeline
   interceptors:
@@ -15,9 +15,9 @@ spec:
         - name: "eventTypes"
           value: ["push"]
   bindings:
-    - ref: apimatic-codegen-operator-demo
+    - ref: apimatic-codegen-openshift-pipelines-demo
   template:
-    ref: apimatic-codegen-operator-demo
+    ref: apimatic-codegen-openshift-pipelines-demo
 ---
 apiVersion: v1
 kind: Secret
