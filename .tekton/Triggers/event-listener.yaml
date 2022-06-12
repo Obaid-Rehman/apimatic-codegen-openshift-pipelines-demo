@@ -1,8 +1,8 @@
 apiVersion: triggers.tekton.dev/v1beta1
 kind: EventListener
 metadata:
-  name: apimatic-codegen-operator-demo
+  name: apimatic-codegen-openshift-pipelines-demo
 spec:
   serviceAccountName: pipeline
   triggers:
-    - triggerRef: apimatic-codegen-operator-demo-trigger
+    - triggerRef: apimatic-codegen-openshift-pipelines-demo
