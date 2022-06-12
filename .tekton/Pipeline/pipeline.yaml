@@ -54,7 +54,7 @@ spec:
     - name: apimatic-codegen-service
       value: $(params.apimatic-codegen-service)
     workspaces:
-    - name: source
+    - name: portalzip
       workspace: shared-workspace
     runAfter:
     - zip-build-folder
