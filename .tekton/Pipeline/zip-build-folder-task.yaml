@@ -13,9 +13,9 @@ spec:
   steps:
     - name: zip
       image: quay.io/apimatic/http-server-base:stable
+      workingDir: /workspace/buildfolder/$(inputs.params.portal_dir)
       command: ["/bin/bash", "-c"]
       args:
         - |-
           echo Zipping the $(inputs.params.portal_dir) directory
-          cd $(workspaces.buildfolder.path)/$(inputs.params.portal_dir)
           zip -r $(workspaces.buildfolder.path)/apimatic.zip .
