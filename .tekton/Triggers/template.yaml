@@ -1,7 +1,7 @@
 apiVersion: triggers.tekton.dev/v1beta1
 kind: TriggerTemplate
 metadata:
-  name: apimatic-codegen-operator-demo
+  name: apimatic-codegen-openshift-pipelines-demo
 spec:
   params:
   - name: git-repo-url
