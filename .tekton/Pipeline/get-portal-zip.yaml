@@ -4,7 +4,7 @@ metadata:
   name: get-portal-zip
 spec:
   workspaces:
-  - name: source
+  - name: portalzip
   params:
     - name: apimatic-codegen-service
       description: The OpenShift codegen service URL running on cluster
