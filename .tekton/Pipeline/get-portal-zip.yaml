@@ -12,10 +12,9 @@ spec:
   steps:
     - name: curl
       image: quay.io/apimatic/http-server-base:stable
-      workingDir: /workspace
+      workingDir: /workspace/portalzip
       command: ["/bin/bash", "-c"]
       args:
         - |-
           echo Obtaining portal.zip file from APIMatic Codegen app running in cluster
-          cd $(workspaces.portalzip.path)/
           curl -X POST --url $(inputs.params.apimatic-codegen-service):8080/api/build -F "file=@apimatic.zip" >> portal.zip
