@@ -43,7 +43,7 @@ spec:
     taskRef:
       name: zip-build-folder
     workspaces:
-    - name: source
+    - name: buildfolder
       workspace: shared-workspace
     runAfter:
     - fetch-repository
