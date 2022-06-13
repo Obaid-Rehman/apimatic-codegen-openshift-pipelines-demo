@@ -5,5 +5,5 @@ COPY portal.zip ./portal.zip
 
 RUN unzip portal.zip -d ./output
 
-
+USER 1000
 ENTRYPOINT [ "http-server", "/app/output", "-p", "9080" ]
