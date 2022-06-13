@@ -14,7 +14,7 @@ RUN rm portal.zip
 
 USER 1000
 
-RUN npm install --local http-server
+RUN npm install --location=local http-server
 
 COPY --chown=node:node . /home/node/app
 
