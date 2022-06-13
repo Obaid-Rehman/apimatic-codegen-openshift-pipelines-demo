@@ -3,7 +3,6 @@ kind: PipelineRun
 metadata:
   name: build-deploy-api-pipelinerun
 spec:
-  serviceAccountName: openshift-pipelines-operator
   pipelineRef:
     name: build-and-deploy
   params:
