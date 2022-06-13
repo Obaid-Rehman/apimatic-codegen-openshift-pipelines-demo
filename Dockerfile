@@ -1,10 +1,23 @@
-FROM quay.io/apimatic/http-server-base
-WORKDIR /app
-EXPOSE 9080
-USER 1000
+FROM node:16-alpine
+RUN mkdir -p /home/node/app && chown -R node:node /home/node/app
+WORKDIR /home/node/app
 
-COPY portal.zip ./portal.zip
+RUN chgrp -R 0 /home/node/app && chmod -R g+rwX /home/node/app
+
+RUN apk add -U unzip && rm -rf /var/cache/apk/*
+
+COPY portal.zip portal.zip
 
 RUN unzip portal.zip -d ./
 
-ENTRYPOINT [ "http-server", "/app", "-p", "9080" ]
+RUN rm portal.zip
+
+USER 1000
+
+RUN npm install --local http-server
+
+COPY --chown=node:node . /home/node/app
+
+EXPOSE 9080
+
+ENTRYPOINT [ "http-server", "./", "-p", "9080" ]
