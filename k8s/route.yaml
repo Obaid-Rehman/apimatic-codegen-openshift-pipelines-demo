@@ -3,7 +3,7 @@ kind: Route
 metadata:
   labels:
     app: apimatic-dx-portal-demo
-  name: apimatic-dx-portal-demo
+  name: dx-route
 spec:
   port:
     targetPort: 9080-tcp
