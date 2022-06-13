@@ -17,7 +17,7 @@ spec:
       containers:
         - image: quay.io/openshift-pipeline/apimatic-dx-portal:latest
           imagePullPolicy: Always
-          name: apimatic-dx-portal
+          name: apimatic-dx-portal-demo
           ports:
             - containerPort: 9080
               protocol: TCP
