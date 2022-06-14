@@ -10,7 +10,7 @@ COPY portal.zip portal.zip
 
 RUN unzip portal.zip -d ./ && rm portal.zip
 
-RUN npm install http-server
+RUN npm install --location=global http-server
 
 RUN chown -R 1001:0 /app && chmod -R ug+rwx /app
 
