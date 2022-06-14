@@ -13,7 +13,7 @@ spec:
   - name: IMAGE
     value: image-registry.openshift-image-registry.svc:5000/$(context.pipelineRun.namespace)/apimatic-dx-portal
   - name: apimatic-codegen-service
-    value: codegen-sample.apimatic-codegen-openshift-pipelines-tutorial.svc.cluster.local
+    value: codegen-sample.$(context.pipelineRun.namespace).svc.cluster.local
   workspaces:
   - name: shared-workspace
     volumeClaimTemplate:
