@@ -85,6 +85,6 @@ spec:
     - name: deployment
       value: $(params.deployment-name)
     - name: IMAGE
-      value: $(params.IMAGE)
+      value: $(params.IMAGE)@$(tasks.build-dx-portal-image.results.IMAGE_DIGEST)
     runAfter:
     - apply-manifests
