@@ -11,7 +11,7 @@ spec:
   - name: git-url
     value: https://github.com/Obaid-Rehman/apimatic-codegen-openshift-pipelines-demo.git
   - name: IMAGE
-    value: image-registry.openshift-image-registry.svc:5000/$(context.pipelineRun.namespace)/apimatic-dx-portal
+    value: image-registry.openshift-image-registry.svc:5000/$(context.pipelineRun.namespace)/apimatic-dx-portal-demo
   - name: apimatic-codegen-service
     value: codegen-sample.$(context.pipelineRun.namespace).svc.cluster.local
   workspaces:
