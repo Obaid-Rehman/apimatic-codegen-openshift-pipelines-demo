@@ -3,6 +3,8 @@ toc:
     items:
       - page: Introduction
         file: readme.md
+      - page: About Me
+        file: about.md
   - generate: API Endpoints
     from: endpoints
   - generate: Models
