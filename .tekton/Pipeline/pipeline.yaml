@@ -3,88 +3,94 @@ kind: Pipeline
 metadata:
   name: build-and-deploy
 spec:
-  workspaces:
-  - name: shared-workspace
   params:
-  - name: deployment-name
-    type: string
-    description: name of the deployment to be patched
-  - name: git-url
-    type: string
-    description: url of the git repo for the code of deployment
-  - name: git-revision
-    type: string
-    description: revision to be used from repo of the code for deployment
-    default: "main"
-  - name: IMAGE
-    type: string
-    description: image to be build from the code
-  - name: apimatic-codegen-service
-    type: string
-    description: The OpenShift DNS url of the APIMatic CodeGen service running in the cluster
+    - description: name of the deployment to be patched
+      name: deployment-name
+      type: string
+    - description: url of the git repo for the code of deployment
+      name: git-url
+      type: string
+    - default: main
+      description: revision to be used from repo of the code for deployment
+      name: git-revision
+      type: string
+    - description: image to be build from the code
+      name: IMAGE
+      type: string
+    - description: >-
+        The OpenShift DNS url of the APIMatic CodeGen service running in the
+        cluster
+      name: apimatic-codegen-service
+      type: string
   tasks:
-  - name: fetch-repository
-    taskRef:
-      name: git-clone
-      kind: ClusterTask
-    workspaces:
-    - name: output
-      workspace: shared-workspace
-    params:
-    - name: url
-      value: $(params.git-url)
-    - name: subdirectory
-      value: ""
-    - name: deleteExisting
-      value: "true"
-    - name: revision
-      value: $(params.git-revision)
-  - name: zip-build-folder
-    taskRef:
-      name: zip-build-folder
-    workspaces:
-    - name: buildfolder
-      workspace: shared-workspace
-    runAfter:
-    - fetch-repository
-  - name: get-portal-zip
-    taskRef:
-      name: get-portal-zip
-    params:
-    - name: apimatic-codegen-service
-      value: $(params.apimatic-codegen-service)
-    workspaces:
-    - name: portalzip
-      workspace: shared-workspace
-    runAfter:
-    - zip-build-folder
-  - name: build-dx-portal-image
-    taskRef:
-      name: buildah
-      kind: ClusterTask
-    params:
-    - name: IMAGE
-      value: $(params.IMAGE)
-    workspaces:
-    - name: source
-      workspace: shared-workspace
-    runAfter:
-    - get-portal-zip
-  - name: apply-manifests
-    taskRef:
-      name: apply-manifests
-    workspaces:
-    - name: source
-      workspace: shared-workspace
-    runAfter:
-    - build-dx-portal-image
-  - name: update-deployment
-    taskRef:
-      name: update-deployment
-    params:
-    - name: deployment
-      value: $(params.deployment-name)
-    - name: IMAGE
-      value: $(params.IMAGE)@$(tasks.build-dx-portal-image.results.IMAGE_DIGEST)
-    runAfter:
-    - apply-manifests
+    - name: fetch-repository
+      params:
+        - name: url
+          value: $(params.git-url)
+        - name: subdirectory
+          value: ''
+        - name: deleteExisting
+          value: 'true'
+        - name: revision
+          value: $(params.git-revision)
+      taskRef:
+        kind: ClusterTask
+        name: git-clone
+      workspaces:
+        - name: output
+          workspace: shared-workspace
+    - name: zip-build-folder
+      runAfter:
+        - fetch-repository
+      taskRef:
+        kind: Task
+        name: zip-build-folder
+      workspaces:
+        - name: buildfolder
+          workspace: shared-workspace
+    - name: get-portal-zip
+      params:
+        - name: apimatic-codegen-service
+          value: $(params.apimatic-codegen-service)
+      runAfter:
+        - zip-build-folder
+      taskRef:
+        kind: Task
+        name: get-portal-zip
+      workspaces:
+        - name: portalzip
+          workspace: shared-workspace
+    - name: build-dx-portal-image
+      params:
+        - name: IMAGE
+          value: $(params.IMAGE)
+      runAfter:
+        - get-portal-zip
+      taskRef:
+        kind: ClusterTask
+        name: buildah
+      workspaces:
+        - name: source
+          workspace: shared-workspace
+    - name: apply-manifests
+      runAfter:
+        - build-dx-portal-image
+      taskRef:
+        kind: Task
+        name: apply-manifests
+      workspaces:
+        - name: source
+          workspace: shared-workspace
+    - name: update-deployment
+      params:
+        - name: deployment
+          value: $(params.deployment-name)
+        - name: IMAGE
+          value: $(params.IMAGE)@$(tasks.build-dx-portal-image.results.IMAGE_DIGEST)
+      runAfter:
+        - apply-manifests
+      taskRef:
+        kind: Task
+        name: update-deployment
+  workspaces:
+    - name: shared-workspace
