@@ -12,7 +12,7 @@ spec:
       default: Portal
   steps:
     - name: zip
-      image: quay.io/apimatic/http-server-base
+      image: joshkeegan/zip:3.16.0
       workingDir: /workspace/buildfolder/$(inputs.params.portal_dir)
       command: ["/bin/sh", "-c"]
       args:
