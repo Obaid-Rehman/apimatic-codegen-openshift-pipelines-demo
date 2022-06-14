@@ -11,7 +11,7 @@ spec:
       type: string
   steps:
     - name: curl
-      image: quay.io/apimatic/http-server-base
+      image: curlimages/curl:7.83.1
       workingDir: /workspace/portalzip
       command: ["/bin/sh", "-c"]
       args:
