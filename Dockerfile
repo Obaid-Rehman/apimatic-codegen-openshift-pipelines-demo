@@ -1,23 +1,19 @@
 FROM node:16-alpine
-RUN mkdir -p /home/node/app && chown -R node:node /home/node/app
-WORKDIR /home/node/app
+WORKDIR /
+EXPOSE 9080
 
-RUN chgrp -R 0 /home/node/app && chmod -R g+rwX /home/node/app
-
-RUN apk add -U unzip && rm -rf /var/cache/apk/*
+ENV NODE_ENV=production \
+    NPM_CONFIG_PREFIX=/home/node/.npm-global \
+    PATH=$PATH:/home/node/.npm-global/bin:/home/node_modules/.bin
 
 COPY portal.zip portal.zip
 
-RUN unzip portal.zip -d ./
+RUN unzip portal.zip -d ./ && rm portal.zip
 
-RUN rm portal.zip
+RUN npm install --location=global http-server
 
-USER 1000
+RUN chown -R 1001:0 / && chmod -R ug+rwx /
 
-RUN npm install --location=local http-server
-
-COPY --chown=node:node . /home/node/app
-
-EXPOSE 9080
+USER 1001
 
 ENTRYPOINT [ "http-server", "./", "-p", "9080" ]
