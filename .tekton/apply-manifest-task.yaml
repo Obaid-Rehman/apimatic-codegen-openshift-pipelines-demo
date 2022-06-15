@@ -5,11 +5,6 @@ metadata:
 spec:
   workspaces:
   - name: source
-  params:
-    - name: manifest_dir
-      description: The directory in source that contains yaml manifests
-      type: string
-      default: "k8s"
   steps:
     - name: apply
       image: image-registry.openshift-image-registry.svc:5000/openshift/cli:latest
@@ -17,6 +12,6 @@ spec:
       command: ["/bin/bash", "-c"]
       args:
         - |-
-          echo Applying manifests in $(inputs.params.manifest_dir) directory
-          oc apply -f $(inputs.params.manifest_dir)
+          echo Applying manifests in k8s directory
+          oc apply -f k8s
           echo -----------------------------------
