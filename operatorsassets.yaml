@@ -9,6 +9,7 @@ spec:
   name: openshiftpipeline-operator
   source: certified-operators
   sourceNamespace: openshift-marketplace
+  installPlanApproval: Automatic
 ---
 apiVersion: operators.coreos.com/v1alpha1
 kind: Subscription
@@ -20,4 +21,5 @@ spec:
   name: apimatic-codegen-operator
   source: certified-operators
   sourceNamespace: openshift-marketplace
+  installPlanApproval: Automatic
 ---
