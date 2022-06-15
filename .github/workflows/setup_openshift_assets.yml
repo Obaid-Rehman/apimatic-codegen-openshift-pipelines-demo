@@ -85,7 +85,7 @@ jobs:
           -p IMAGE="image-registry.openshift-image-registry.svc:5000/${{ inputs.namespace }}/apimatic-dx-portal-demo" \
           -p apimatic-codegen-service="apimatic-codegen.${{ inputs.namespace }}.svc.cluster.local" \
           --use-param-defaults \
-          --showlog=true
+          --showlog=true \
           -n ${{ inputs.namespace }}
       
             
