@@ -1,0 +1,38 @@
+name: Set Up RedHat OpenShift on Azure
+
+on:
+  workflow_dispatch:
+    inputs:
+      openshift_login_token:
+        description: 'Login token to access OpenShift Cluster'
+        required: true
+        type: string
+      openshift_login_server:
+        description: 'Login server to access OpenShift Cluster'
+        required: true
+        type: string
+        
+  
+env:
+
+  LOCATION: eastus
+  RESOURCEGROUP: OpenShiftTest
+  CLUSTER: cluster
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    
+    steps:
+          
+      - name: Get OpenShift Tools
+        uses: redhat-actions/openshift-tools-installer@v1
+        with:
+          source: 'mirror'
+          skip_cache: true
+          oc: 'latest'
+          tkn: 'latest'
+          
+      - name: Login to OpenShift Cluster
+        run: oc login --token=${{ inputs.openshift_login_token }} --server=${{ inputs.openshift_login_server }}
+            
