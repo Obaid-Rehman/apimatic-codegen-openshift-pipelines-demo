@@ -1,0 +1,38 @@
+name: OpenShiftPipelineOnPush
+on:
+  push:
+    branches: [ "main" ]
+    
+jobs:
+  trigger:
+  
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Get OpenShift Tools
+        uses: redhat-actions/openshift-tools-installer@v1
+        with:
+          source: 'mirror'
+          skip_cache: true
+          oc: 'latest'
+          tkn: 'latest'
+          
+      - name: Login to OpenShift Cluster
+        run: oc login --token=${{ secrets.OPENSHIFT_LOGIN_TOKEN }} --server=${{ secrets.OPENSHIFT_LOGIN_SERVER }}
+        
+      - name: Trigger pipeline
+        run: |
+          tkn pipeline start build-and-deploy \
+          -w name=shared-workspace,volumeClaimTemplateFile=.tekton/Pipeline/persistent_volume_claim.yaml \
+          -p deployment-name=apimatic-dx-portal-demo \
+          -p git-url=https://github.com/${{ github.repository }} \
+          -p IMAGE="image-registry.openshift-image-registry.svc:5000/${{ secrets.NAMESPACE }}/apimatic-dx-portal-demo" \
+          -p apimatic-codegen-service="apimatic-codegen.${{ secrets.NAMESPACE }}.svc.cluster.local" \
+          --use-param-defaults \
+          --showlog=true \
+          -n ${{ inputs.namespace }}
+          
+      - name: Get route
+        run: |
+          echo "Click following URL to access the application"
+          oc get route myroute -n ${{ secrets.NAMESPACE }} --template='http://{{.spec.host}}'
