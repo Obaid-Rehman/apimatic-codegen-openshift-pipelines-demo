@@ -13,7 +13,7 @@ on:
         type: string
       namespace:
         description: 'OpenShift Project Name to deploy assets to'
-        required: false
+        required: true
         type: string
         default: 'pipelines-tutorial'
         
@@ -30,6 +30,8 @@ jobs:
     runs-on: ubuntu-latest
     
     steps:
+    
+      - uses: actions/checkout@v3
           
       - name: Get OpenShift Tools
         uses: redhat-actions/openshift-tools-installer@v1
@@ -41,4 +43,24 @@ jobs:
           
       - name: Login to OpenShift Cluster
         run: oc login --token=${{ inputs.openshift_login_token }} --server=${{ inputs.openshift_login_server }}
+        
+      - name: Create Namespace if not exists
+        run: |
+          oc get ns ${{ inputs.namespace }} 2>/dev/null || oc new-project ${{ inputs.namespace }} --description='Project to configure pipelines demo in' --display-name:'APIMAtic CodeGen Pipelines Demo'
+          oc project ${{ inputs.namespace }}
+          
+      - name: Apply pipeline tasks
+        run: !
+          oc apply -f .tekton/Pipeline/apply-manifest-task.yaml
+          oc apply -f .tekton/Pipeline/update-deployment-task.yaml
+          oc apply -f .tekton/Pipeline/get-portal-zip.yaml
+          oc apply -f .tekton/Pipeline/zip_build-folder-task.yaml
+          
+      - name: Apply pipeline
+        run: oc apply -f .tekton/Pipeline/pipeline.yaml
+        
+      - name: Echo pipeline
+        run: tkn pipeline describe build-and-deploy ${{ inputs.namespace }} 
+        
+      
             
