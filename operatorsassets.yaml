@@ -1,18 +1,8 @@
----
-apiVersion: operators.coreos.com/v1
-kind: OperatorGroup
-metadata:
-  name: my-project
-  namespace: my-project
-spec:
-  targetNamespaces:
-  - my-project
----
 apiVersion: operators.coreos.com/v1alpha1
 kind: Subscription
 metadata:
   name: openshiftpipeline-operator
-  namespace: my-project
+  namespace: openshift-operators
 spec:
   channel: stable
   name: openshiftpipeline-operator
@@ -23,7 +13,7 @@ apiVersion: operators.coreos.com/v1alpha1
 kind: Subscription
 metadata:
   name: apimatic-codegen-operator
-  namespace: my-project
+  namespace: openshift-operators
 spec:
   channel: beta
   name: apimatic-codegen-operator
