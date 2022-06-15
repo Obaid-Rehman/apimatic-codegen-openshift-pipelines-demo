@@ -1,0 +1,16 @@
+apiVersion: tekton.dev/v1beta1
+kind: Task
+metadata:
+  name: zip-build-folder
+spec:
+  workspaces:
+  - name: buildfolder
+  steps:
+    - name: zip
+      image: joshkeegan/zip:3.16.0
+      workingDir: /workspace/buildfolder/Portal
+      command: ["/bin/sh", "-c"]
+      args:
+        - |-
+          echo Zipping the Portal directory
+          zip -r $(workspaces.buildfolder.path)/apimatic.zip .
