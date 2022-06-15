@@ -1,4 +1,4 @@
-name: Set Up RedHat OpenShift Assets
+name: Set Up RedHat OpenShift Infrastructure
 
 on:
   workflow_dispatch:
