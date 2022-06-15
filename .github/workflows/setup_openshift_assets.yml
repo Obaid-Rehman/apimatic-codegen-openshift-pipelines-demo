@@ -2,27 +2,6 @@ name: Set Up RedHat OpenShift Assets
 
 on:
   workflow_dispatch:
-    inputs:
-      openshift_login_token:
-        description: 'Login token to access OpenShift Cluster'
-        required: true
-        type: string
-        default: sha256~TA0KP7jClkqOCugYM281DWQsDmtZiMFw2VxxrOhEm0U
-      openshift_login_server:
-        description: 'Login server to access OpenShift Cluster'
-        required: true
-        type: string
-        default: https://api.uiw75mro.eastus.aroapp.io:6443
-      namespace:
-        description: 'OpenShift Project Name to deploy assets to'
-        required: true
-        type: string
-        default: pipelines-tutorial
-      licenseblob:
-        description: 'APIMatic License Information'
-        required: true
-        type: string
-        default: PExpY2Vuc2U+DQogIDxJZD41MDVlNzM4Ny0xZmIxLTQ4ZDQtOGRmMS1iYjk3NGEyNjM2MDM8L0lkPg0KICA8VHlwZT5TdGFuZGFyZDwvVHlwZT4NCiAgPEV4cGlyYXRpb24+RnJpLCAxNyBNYXkgMjA1MiAwNzoxOTozOSBHTVQ8L0V4cGlyYXRpb24+DQogIDxRdWFudGl0eT4yPC9RdWFudGl0eT4NCiAgPFByb2R1Y3RGZWF0dXJlcz4NCiAgICA8RmVhdHVyZSBuYW1lPSJpbXBvcnRGb3JtYXRzIj5BUElCbHVlUHJpbnQsQVBJRWxlbWVudHMsUG9zdG1hbjIsV3NkbCxXQURMMjAwOSxXQURMMjAwNixSYW1sLFJhbWwxMCxTd2FnZ2VyMjAsU3dhZ2dlcllhbWwsU3dhZ2dlcjEwLE9wZW5BcGkzSnNvbixPcGVuQXBpM1lhbWwsSU9Eb2NzLElPRG9jc1YwMzE0LEluc29tbmlhLEluc29tbmlhWWFtbCxSQU1MQXNKc29uLEdvb2dsZURpc2NvdmVyeSxQb3N0bWFuPC9GZWF0dXJlPg0KICAgIDxGZWF0dXJlIG5hbWU9ImV4cG9ydEZvcm1hdHMiPlN3YWdnZXIyMCxTd2FnZ2VyWWFtbCxTd2FnZ2VyMTAsT3BlbkFwaTNKc29uLE9wZW5BcGkzWWFtbCxXc2RsLEFQSUJsdWVQcmludCxBUElFbGVtZW50cyxQb3N0bWFuMixXQURMMjAwOSxXQURMMjAwNixXU0RMLElPRG9jcyxJT0RvY3NWMDMxNCxSQU1MLFJBTUwxMCxHb29nbGVEaXNjb3ZlcnksUG9zdG1hbjIwLEluc29tbmlhLEluc29tbmlhWWFtbDwvRmVhdHVyZT4NCiAgICA8RmVhdHVyZSBuYW1lPSJwbGF0Zm9ybXMiPjwvRmVhdHVyZT4NCiAgPC9Qcm9kdWN0RmVhdHVyZXM+DQogIDxDdXN0b21lcj4NCiAgICA8TmFtZT5EZXZlbG9wZXI8L05hbWU+DQogICAgPEVtYWlsPmRldmVsb3BlckBhcGltYXRpYy5pbzwvRW1haWw+DQogIDwvQ3VzdG9tZXI+DQogIDxTaWduYXR1cmU+TUVVQ0lRRE1yTlY0dE1PUzEwUExiZ1Z0QkVvTHZ6ZGd1UDkzUnk5Tm9pMHBsS2lWa2dJZ1ZOVWtoWTVoS2xiZFBLc1pMcDZrcnZKODV0WUdHUHFBV1gxblkyUUx2NjQ9PC9TaWduYXR1cmU+DQo8L0xpY2Vuc2U+
 
 jobs:
   deploy:
@@ -41,7 +20,7 @@ jobs:
           tkn: 'latest'
           
       - name: Login to OpenShift Cluster
-        run: oc login --token=${{ inputs.openshift_login_token }} --server=${{ inputs.openshift_login_server }}
+        run: oc login --token=${{ secrets.OPENSHIFT_LOGIN_TOKEN }} --server=${{ secrets.OPENSHIFT_LOGIN_SERVER }}
         
       - name: Install RedHat Pipelines and APIMatic CodeGen Operator
         run: |
@@ -53,28 +32,28 @@ jobs:
         
       - name: Create Namespace if not exists
         run: |
-          oc get ns ${{ inputs.namespace }} 2>/dev/null || oc new-project ${{ inputs.namespace }} --description='Project to configure pipelines demo in' --display-name='APIMAtic CodeGen Pipelines Demo'
+          oc get ns ${{ secrets.NAMESPACE }} 2>/dev/null || oc new-project ${{ secrets.NAMESPACE }} --description='Project to configure pipelines demo in' --display-name='APIMAtic CodeGen Pipelines Demo'
           
       - name: Create APIMatic CodeGen instance
         run: |
-          sed -i -e 's/LICENSE_PLACE_HOLDER/${{ inputs.licenseblob }}/' codegen.yaml
-          oc apply -f codegen.yaml -n ${{ inputs.namespace }}
+          sed -i -e 's/LICENSE_PLACE_HOLDER/${{ secrets.LICENSEBLOB }}/' codegen.yaml
+          oc apply -f codegen.yaml -n ${{ secrets.NAMESPACE }}
           
           
       - name: Apply pipeline tasks
         run: |
-          oc apply -f .tekton/Pipeline/apply-manifest-task.yaml -n ${{ inputs.namespace }}
-          oc apply -f .tekton/Pipeline/update-deployment-task.yaml -n ${{ inputs.namespace }}
-          oc apply -f .tekton/Pipeline/get-portal-zip.yaml -n ${{ inputs.namespace }}
-          oc apply -f .tekton/Pipeline/zip-build-folder-task.yaml -n ${{ inputs.namespace }}
+          oc apply -f .tekton/Pipeline/apply-manifest-task.yaml -n ${{ secrets.NAMESPACE }}
+          oc apply -f .tekton/Pipeline/update-deployment-task.yaml -n ${{ secrets.NAMESPACE }}
+          oc apply -f .tekton/Pipeline/get-portal-zip.yaml -n ${{ secrets.NAMESPACE }}
+          oc apply -f .tekton/Pipeline/zip-build-folder-task.yaml -n ${{ secrets.NAMESPACE }}
           
       - name: Apply pipeline
         run: |
-          oc apply -f .tekton/Pipeline/pipeline.yaml -n ${{ inputs.namespace }}
+          oc apply -f .tekton/Pipeline/pipeline.yaml -n ${{ secrets.NAMESPACE }}
         
       - name: Echo pipeline
         run: |
-          tkn pipeline describe build-and-deploy -n ${{ inputs.namespace }} 
+          tkn pipeline describe build-and-deploy -n ${{ secrets.NAMESPACE }} 
           
       - name: Trigger pipeline
         run: |
@@ -82,8 +61,8 @@ jobs:
           -w name=shared-workspace,volumeClaimTemplateFile=.tekton/Pipeline/persistent_volume_claim.yaml \
           -p deployment-name=apimatic-dx-portal-demo \
           -p git-url=https://github.com/${{ github.repository }} \
-          -p IMAGE="image-registry.openshift-image-registry.svc:5000/${{ inputs.namespace }}/apimatic-dx-portal-demo" \
-          -p apimatic-codegen-service="apimatic-codegen.${{ inputs.namespace }}.svc.cluster.local" \
+          -p IMAGE="image-registry.openshift-image-registry.svc:5000/${{ secrets.NAMESPACE }}/apimatic-dx-portal-demo" \
+          -p apimatic-codegen-service="apimatic-codegen.${{ secrets.NAMESPACE }}.svc.cluster.local" \
           --use-param-defaults \
           --showlog=true \
           -n ${{ inputs.namespace }}
@@ -91,7 +70,7 @@ jobs:
       - name: Get route
         run: |
           echo "Click following URL to access the application"
-          oc get route myroute -n ${{ inputs.namespace }} --template='http://{{.spec.host}}'
+          oc get route myroute -n ${{ secrets.NAMESPACE }} --template='http://{{.spec.host}}'
           
       
             
