@@ -57,7 +57,7 @@ jobs:
           
       - name: Create APIMatic CodeGen instance
         run: |
-          sed -i -e 's/LICENSE_PLACE_HOLDER/${{ inputs.licenseblob }}' codegen.yaml
+          sed -i -e 's/LICENSE_PLACE_HOLDER/${{ inputs.licenseblob }}/' codegen.yaml
           oc apply -f codegen.yaml -n ${{ inputs.namespace }}
           
           
