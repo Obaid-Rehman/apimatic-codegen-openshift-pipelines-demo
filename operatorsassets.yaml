@@ -6,8 +6,8 @@ metadata:
   namespace: openshift-operators
 spec:
   channel: stable
-  name: openshiftpipeline-operator
-  source: certified-operators
+  name: openshift-pipelines-operator-rh
+  source: redhat-operators
   sourceNamespace: openshift-marketplace
   installPlanApproval: Automatic
 ---
