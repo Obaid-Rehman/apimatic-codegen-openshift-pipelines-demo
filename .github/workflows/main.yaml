@@ -11,6 +11,8 @@ jobs:
     runs-on: ubuntu-latest
     
     steps:
+      - uses: actions/checkout@v3
+      
       - name: Get OpenShift Tools
         uses: redhat-actions/openshift-tools-installer@v1
         with:
