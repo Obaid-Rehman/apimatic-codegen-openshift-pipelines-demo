@@ -1,4 +1,4 @@
-name: OpenShiftPipelineOnPush
+name: OpenShift Pipeline On Push
 on:
   push:
     branches: [ "main" ]
