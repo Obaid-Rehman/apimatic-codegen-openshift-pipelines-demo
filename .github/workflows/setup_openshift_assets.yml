@@ -87,5 +87,11 @@ jobs:
           --use-param-defaults \
           --showlog=true \
           -n ${{ inputs.namespace }}
+          
+      - name: Get route
+        run: |
+          echo "Click following URL to access the application"
+          oc get route myroute -n ${{ inputs.namespace }} --template='http://{{.spec.host}}'
+          
       
             
