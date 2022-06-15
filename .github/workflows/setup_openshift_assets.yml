@@ -1,4 +1,4 @@
-name: Set Up RedHat OpenShift on Azure
+name: Set Up RedHat OpenShift Assets
 
 on:
   workflow_dispatch:
@@ -11,6 +11,12 @@ on:
         description: 'Login server to access OpenShift Cluster'
         required: true
         type: string
+      namespace:
+        description: 'OpenShift Project Name to deploy assets to'
+        required: false
+        type: string
+        default: 'pipelines-tutorial'
+        
         
   
 env:
