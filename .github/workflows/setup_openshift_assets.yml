@@ -60,7 +60,7 @@ jobs:
         run: oc apply -f .tekton/Pipeline/pipeline.yaml
         
       - name: Echo pipeline
-        run: tkn pipeline describe build-and-deploy ${{ inputs.namespace }} 
+        run: tkn pipeline describe build-and-deploy -n ${{ inputs.namespace }} 
         
       
             
