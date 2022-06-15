@@ -66,7 +66,7 @@ jobs:
           oc apply -f .tekton/Pipeline/apply-manifest-task.yaml -n ${{ inputs.namespace }}
           oc apply -f .tekton/Pipeline/update-deployment-task.yaml -n ${{ inputs.namespace }}
           oc apply -f .tekton/Pipeline/get-portal-zip.yaml -n ${{ inputs.namespace }}
-          oc apply -f .tekton/Pipeline/zip_build-folder-task.yaml -n ${{ inputs.namespace }}
+          oc apply -f .tekton/Pipeline/zip-build-folder-task.yaml -n ${{ inputs.namespace }}
           
       - name: Apply pipeline
         run: |
