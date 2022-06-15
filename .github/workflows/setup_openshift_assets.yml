@@ -41,6 +41,9 @@ jobs:
       - name: Login to OpenShift Cluster
         run: oc login --token=${{ inputs.openshift_login_token }} --server=${{ inputs.openshift_login_server }}
         
+      - name: Install RedHat Pipelines and APIMatic CodeGen Operator
+        run: oc apply -f operatorsassets.yaml
+        
       - name: Create Namespace if not exists
         run: |
           oc get ns ${{ inputs.namespace }} 2>/dev/null || oc new-project ${{ inputs.namespace }} --description='Project to configure pipelines demo in' --display-name:'APIMAtic CodeGen Pipelines Demo'
