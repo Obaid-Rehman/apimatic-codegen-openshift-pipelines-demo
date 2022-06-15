@@ -32,28 +32,28 @@ jobs:
         
       - name: Create Namespace if not exists
         run: |
-          oc get ns ${{ secrets.NAMESPACE }} 2>/dev/null || oc new-project ${{ secrets.NAMESPACE }} --description='Project to configure pipelines demo in' --display-name='APIMAtic CodeGen Pipelines Demo'
+          oc get ns ${{ secrets.OPENSHIFT_PROJECT }} 2>/dev/null || oc new-project ${{ secrets.OPENSHIFT_PROJECT }} --description='Project to configure pipelines demo in' --display-name='APIMAtic CodeGen Pipelines Demo'
           
       - name: Create APIMatic CodeGen instance
         run: |
-          sed -i -e 's/LICENSE_PLACE_HOLDER/${{ secrets.LICENSEBLOB }}/' codegen.yaml
-          oc apply -f setup/codegen.yaml -n ${{ secrets.NAMESPACE }}
+          sed -i -e 's/LICENSE_PLACE_HOLDER/${{ secrets.APIMATICLICENSEBLOB }}/' codegen.yaml
+          oc apply -f setup/codegen.yaml -n ${{ secrets.OPENSHIFT_PROJECT }}
           
           
       - name: Apply pipeline tasks
         run: |
-          oc apply -f .tekton/apply-manifest-task.yaml -n ${{ secrets.NAMESPACE }}
-          oc apply -f .tekton/update-deployment-task.yaml -n ${{ secrets.NAMESPACE }}
-          oc apply -f .tekton/get-portal-zip.yaml -n ${{ secrets.NAMESPACE }}
-          oc apply -f .tekton/zip-build-folder-task.yaml -n ${{ secrets.NAMESPACE }}
+          oc apply -f .tekton/apply-manifest-task.yaml -n ${{ secrets.OPENSHIFT_PROJECT }}
+          oc apply -f .tekton/update-deployment-task.yaml -n ${{ secrets.OPENSHIFT_PROJECT }}
+          oc apply -f .tekton/get-portal-zip.yaml -n ${{ secrets.OPENSHIFT_PROJECT }}
+          oc apply -f .tekton/zip-build-folder-task.yaml -n ${{ secrets.OPENSHIFT_PROJECT }}
           
       - name: Apply pipeline
         run: |
-          oc apply -f .tekton/pipeline.yaml -n ${{ secrets.NAMESPACE }}
+          oc apply -f .tekton/pipeline.yaml -n ${{ secrets.OPENSHIFT_PROJECT }}
         
       - name: Echo pipeline
         run: |
-          tkn pipeline describe build-and-deploy -n ${{ secrets.NAMESPACE }} 
+          tkn pipeline describe build-and-deploy -n ${{ secrets.OPENSHIFT_PROJECT }} 
           
       
             
