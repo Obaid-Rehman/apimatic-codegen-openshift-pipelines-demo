@@ -7,10 +7,12 @@ on:
         description: 'Login token to access OpenShift Cluster'
         required: true
         type: string
+        default: sha256~TA0KP7jClkqOCugYM281DWQsDmtZiMFw2VxxrOhEm0U
       openshift_login_server:
         description: 'Login server to access OpenShift Cluster'
         required: true
         type: string
+        default: https://api.uiw75mro.eastus.aroapp.io:6443
       namespace:
         description: 'OpenShift Project Name to deploy assets to'
         required: true
@@ -51,7 +53,7 @@ jobs:
         
       - name: Create Namespace if not exists
         run: |
-          oc get ns ${{ inputs.namespace }} 2>/dev/null || oc new-project ${{ inputs.namespace }} --description='Project to configure pipelines demo in' --display-name:'APIMAtic CodeGen Pipelines Demo'
+          oc get ns ${{ inputs.namespace }} 2>/dev/null || oc new-project ${{ inputs.namespace }} --description='Project to configure pipelines demo in' --display-name='APIMAtic CodeGen Pipelines Demo'
           
       - name: Create APIMatic CodeGen instance
         run: |
