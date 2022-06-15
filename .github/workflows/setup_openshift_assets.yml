@@ -42,7 +42,12 @@ jobs:
         run: oc login --token=${{ inputs.openshift_login_token }} --server=${{ inputs.openshift_login_server }}
         
       - name: Install RedHat Pipelines and APIMatic CodeGen Operator
-        run: oc apply -f operatorsassets.yaml
+        run: |
+          oc apply -f operatorsassets.yaml
+        
+      - name: Wait for Operators to be installed
+        run: |
+          sleep 60
         
       - name: Create Namespace if not exists
         run: |
