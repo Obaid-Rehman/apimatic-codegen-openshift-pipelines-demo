@@ -63,11 +63,21 @@ jobs:
           
       - name: Apply pipeline
         run: |
-          oc apply -f .tekton/Pipeline/pipeline.yaml
+          oc apply -f .tekton/Pipeline/pipeline.yaml -n ${{ inputs.namespace }}
         
       - name: Echo pipeline
         run: |
           tkn pipeline describe build-and-deploy -n ${{ inputs.namespace }} 
-        
+          
+      - name: Trigger pipeline
+        run: |
+          tkn pipeline start build-and-deploy \
+          -w name=shared-workspace,volumeClaimTemplateFile=.tekton/Pipeline/persistent_volume_claim.yaml \
+          -p deployment-name=apimatic-dx-portal-demo \
+          -p git-url=https://github.com/Obaid-Rehman/apimatic-codegen-openshift-pipelines-demo.git \
+          -p IMAGE="image-registry.openshift-image-registry.svc:5000/$(context.pipelineRun.namespace)/apimatic-dx-portal-demo" \
+          -p apimatic-codegen-service="apimatic-codegen.${{ inputs.namespace }}.svc.cluster.local" \
+          --use-param-defaults \
+          --showlog=true
       
             
