@@ -1,0 +1,11 @@
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  name: route
+spec:
+  path: /
+  to:
+    kind: Service
+    name: apimatic-dx-portal-demo
+  port:
+    targetPort: 9080
