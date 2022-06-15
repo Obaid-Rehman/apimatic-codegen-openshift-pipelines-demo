@@ -47,20 +47,27 @@ jobs:
       - name: Create Namespace if not exists
         run: |
           oc get ns ${{ inputs.namespace }} 2>/dev/null || oc new-project ${{ inputs.namespace }} --description='Project to configure pipelines demo in' --display-name:'APIMAtic CodeGen Pipelines Demo'
-          oc project ${{ inputs.namespace }}
+          
+      - name: Create APIMatic CodeGen instance
+        run: |
+          sed -i -e 's/LICENSE_PLACE_HOLDER/${{ inputs.licenseblob }}' codegen.yaml
+          oc apply -f codegen.yaml -n ${{ inputs.namespace }}
+          
           
       - name: Apply pipeline tasks
-        run: !
-          oc apply -f .tekton/Pipeline/apply-manifest-task.yaml
-          oc apply -f .tekton/Pipeline/update-deployment-task.yaml
-          oc apply -f .tekton/Pipeline/get-portal-zip.yaml
-          oc apply -f .tekton/Pipeline/zip_build-folder-task.yaml
+        run: |
+          oc apply -f .tekton/Pipeline/apply-manifest-task.yaml -n ${{ inputs.namespace }}
+          oc apply -f .tekton/Pipeline/update-deployment-task.yaml -n ${{ inputs.namespace }}
+          oc apply -f .tekton/Pipeline/get-portal-zip.yaml -n ${{ inputs.namespace }}
+          oc apply -f .tekton/Pipeline/zip_build-folder-task.yaml -n ${{ inputs.namespace }}
           
       - name: Apply pipeline
-        run: oc apply -f .tekton/Pipeline/pipeline.yaml
+        run: |
+          oc apply -f .tekton/Pipeline/pipeline.yaml
         
       - name: Echo pipeline
-        run: tkn pipeline describe build-and-deploy -n ${{ inputs.namespace }} 
+        run: |
+          tkn pipeline describe build-and-deploy -n ${{ inputs.namespace }} 
         
       
             
