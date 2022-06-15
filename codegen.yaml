@@ -1,0 +1,8 @@
+apiVersion: apps.apimatic.io/v1beta2
+kind: CodeGen
+metadata:
+  name: apimatic-codegen
+spec:
+  licenseSpec:
+    licenseSourceType: 'LicenseBlob'
+    licenseSourceValue: 'LICENSE_PLACE_HOLDER'
