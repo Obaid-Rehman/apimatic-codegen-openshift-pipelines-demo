@@ -4,50 +4,9 @@ APIMatic CodeGen is your go-to cloud-ready provider for making the customer on-b
 
 Following the steps given in this demo, you will see that by using the OpenShift Pipelines operator together with the RedHat-certified [APIMatic CodeGen Operator](https://github.com/apimatic/apimatic-codegen-operator), a complete automation flow can be devised to take your API Portal configurations from source to production-ready DX portal deployment a painless task. You can even use this demo as a starter project to devise your own Source-to-API DX Portal automation flow design without much hassle.
 
-## Project Directory Structure
+## Project Info
 
-    .
-    ├── .github
-    │   └── workflows
-    │       ├── main.yaml
-    │       └── setup_openshift_infrastructure.yaml
-    │
-    ├── .tekton
-    │   ├── apply-manifest-task.yaml 
-    │   ├── get-portal-zip.yaml
-    │   ├── persistent_volume_claim.yaml
-    │   ├── pipeline.yaml 
-    │   ├── update-deployment-task.yaml
-    │   └── zip-build-folder-task.yaml
-    │
-    ├── Portal                       # Contains the actual files used to configure the generated API DX Portal  
-    │   ├── content
-    │   │   ├── about.md 
-    │   │   ├── readme.md
-    │   │   └── toc.yml
-    │   ├── spec
-    │   │   └── spec1
-    │   │       └── openapi.json     # The API Spec file from which the API SDKs and Docs will be generated
-    │   ├── static
-    │   │   └── images
-    │   │       └── logo.png   
-    │   └── APIMATIC-BUILD.json      # The main APIMatic CodeGen build file that is read by APIMatic CodeGen to process the associated
-    │                                # artifacts and produce the desired SDKs, Docs and API Specs
-    │
-    ├── k8s                          # K8s yaml files used to set up the DX portal Service, Deployment and OpenShift Route resources
-    │   ├── deployment.yaml 
-    │   ├── route.yaml
-    │   └── service.yaml 
-    │
-    ├── setup                   
-    │    ├── codegen.yaml             # K8s APIMatic CodeGen custom resource yaml file
-    │    └── operatorassets.yaml      # Yaml file containing the OpenShift Pipelines and 
-    │                                 # APIMatic CodeGen Operator installation info
-    │
-    ├── LICENSE
-    └── README.md
-    └── Dockerfile                    # Dockerfile used to containerize and run the DX portal web server 
-                                      # using the Portal artifacts generated using APIMatic CodeGen
+If you would like to know more about how this project is set up and what the different directories and files are for, you can find that information [here](./docs/demo_structure.md). You can view that information later as it is not necessary to understand it to proceed with the demonstration.
 
 ## Prerequisites
 
