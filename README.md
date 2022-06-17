@@ -59,6 +59,16 @@ With your OpenShift 4 cluster setup, we can now proceed with the demonstration u
 
   - Trigger the [build-and-deploy](./.tekton/pipeline.yaml) pipeline with the configured parameter values. This will set off a sequence of tasks starting with cloning the GitHub repository contents and finishing off with an initial DX portal web server that is externally accessible using the generated OpenShift route. You can then view the generated Portal using the link provided at the end of the GitHub action workflow.  
 
+- **Make Changes and View Results**
+
+  With an initial DX Portal set up, you can now make changes in the contents of the [Portal](./Portal/) directory. Once the changes are pushed into the *main* branch, the [main.yaml](./.github/workflows/main.yaml) GitHub action will be triggered which will in turn start up the *build-and-deploy* Tekton pipeline. At the end, you can view the updated DX portal using the route URL as before.
+  
+  To demonstrate this, suppose we make the following change to the [APIMATIC-BUILD.json](./Portal/APIMATIC-BUILD.json) file:
+  
+  ```json
+  
+  ```
+
   
     
 
