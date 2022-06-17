@@ -28,24 +28,24 @@ With your OpenShift 4 cluster setup, we can now proceed with the demonstration u
 
   - **APIMATICLICENSEBLOB**:
     This is the APIMatic CodeGen License string that will be used to start up the APIMatic CodeGen instances.
-    ![Github secrets](./docs/7.png)
+    ![Github secrets](./docs/7.PNG)
   - **OPENSHIFT_LOGIN_SERVER**:
     This is the value found when you click on the _Copy login command_ as shown below. Copy the values masked by green:
-    ![Login Page](./docs/1.png)
-    ![Click Token](./docs/2.png)
-    ![Credentials](./docs/3.png)
-    ![Server](./docs/4.png)
+    ![Login Page](./docs/1.PNG)
+    ![Click Token](./docs/2.PNG)
+    ![Credentials](./docs/3.PNG)
+    ![Server](./docs/4.PNG)
   - **OPENSHIFT_LOGIN_TOKEN**:
     This is the token value found when you click on the _Copy Login Command_. Copy the value maked by pink:
-    ![Token](./docs/5.png)
+    ![Token](./docs/5.PNG)
   - **OPENSHIFT_PROJECT**:
     This is the name of the OpenShift project that will be created in which the Tekton tasks and pipeline resources will be deployed as well as the
     APIMatic CodeGen Server and the DX Portal resources.
-    ![Namespace](./docs/6.png)
+    ![Namespace](./docs/6.PNG)
 
   Once these are setup, your GitHub Repo secrets page should be as shown below:
 
-  ![GitHub Secrets](./docs/8.png)
+  ![GitHub Secrets](./docs/8.PNG)
 
 - **Initial OpenShift Infrastructure Setup**
 
@@ -65,8 +65,8 @@ With your OpenShift 4 cluster setup, we can now proceed with the demonstration u
 
   - Trigger the [build-and-deploy](./.tekton/pipeline.yaml) pipeline with the configured parameter values. This will set off a sequence of tasks starting with cloning the GitHub repository contents and finishing off with an initial DX portal web server that is externally accessible using the generated OpenShift route.
 
-  ![OpenShift route](./docs/11.png)
-  ![Original Portal View](./docs/12.png)
+  ![OpenShift route](./docs/11.PNG)
+  ![Original Portal View](./docs/12.PNG)
 
 - **Make Changes and View Results**
 
@@ -114,7 +114,7 @@ With your OpenShift 4 cluster setup, we can now proceed with the demonstration u
 
   The resulting re-generated portal will now have the following look:
 
-  ![Updated Portal View](./docs/16.png)
+  ![Updated Portal View](./docs/16.PNG)
 
   Admittedly, not the best-looking API DX portal in the world but the emphasis was on demonstrating the flexibility APIMatic CodeGen offers in tweaking your DX portal to look just the way you want.
 
