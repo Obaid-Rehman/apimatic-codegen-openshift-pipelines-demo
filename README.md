@@ -47,7 +47,11 @@ With your OpenShift 4 cluster setup, we can now proceed with the demonstration u
 
   - Create an OpenShift project using the *OPENSHIFT_PROJECT* GitHub secret.
 
-  - Update the [codegen.yaml](./setup/codegen.yaml) file, feeding it the *APIMATICLICENSEBLOB* secret value and use *oc apply* command to setup a APIMatic CodeGen resource in the created OpenShift project. The APIMatic CodeGen Operator will see this and create the K8s Deployment and Service resources to spin up the APIMatic CodeGen app and have it ready to accept requests for DX Build generation.
+  - Update the [codegen.yaml](./setup/codegen.yaml) file, feeding it the *APIMATICLICENSEBLOB* secret value and use *oc apply* command to setup a APIMatic CodeGen resource in the created OpenShift project. The APIMatic CodeGen Operator will see this and create the K8s Deployment and Service resources to spin up the APIMatic CodeGen app and have it ready to accept requests for API DX portal artifacts generation.
+
+  - Deploy the Tekton [Tasks and Pipeline](./.tekton/) resources.
+
+  - Trigger the [build-and-deploy](./.tekton/pipeline.yaml) pipeline with the configured parameter values. This will set off a sequence of tasks starting with cloning the GitHub repository contents and finishing off with an initial DX portal web server that is externally accessible using the generated OpenShift route. You can then view the generated Portal using the link provided at the end of the GitHub action workflow.  
 
   
     
