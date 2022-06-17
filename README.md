@@ -20,7 +20,18 @@ With your OpenShift 4 cluster setup, we can now proceed with the demonstration u
 
   Fork this repository and add the values for the Repo secrets that will be used to run the initial OpenShift assets set up. These include:
 
-  - **APIMATICLICENSEBLOB**: This is the APIMatic CodeGen License string that will be used to start up the APIMatic CodeGen instances.
+  - **APIMATICLICENSEBLOB**: 
+    This is the APIMatic CodeGen License string that will be used to start up the APIMatic CodeGen instances.
+    
+  - **OPENSHIFT_LOGIN_SERVER**:
+    This is the value found when you click on the *Copy login command* as shown below:
+    
+  - **OPENSHIFT_LOGIN_TOKEN**:
+    This is the server value found when you click on the *Copy login command* as shown below:  
+    
+  - **OPENSHIFT_PROJECT**:
+    This is the name of the OpenShift project that will be created in which the Tekton tasks and pipeline resources will be deployed as well as the 
+    APIMatic CodeGen Server and the DX Portal resources. For this demo, it is set as *pipelines-tutorial*
     
 
 
