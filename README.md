@@ -138,7 +138,7 @@ The complete online documentation for all APIMatic offerings is available at:
 
 ## Technical Support
 
-Alachisoft [C] provides various sources of technical support.
+APIMatic [C] provides various sources of technical support.
 
 - Please refer to the [APIMatic contact page](https://www.apimatic.io/contact/) to select a support resource you find suitable for your issue.
 - To request additional features in the future, or if you notice any discrepancy regarding this document, please drop an email to [support@apimatic.io](mailto:support@apimatic.io).
