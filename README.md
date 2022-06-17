@@ -35,9 +35,9 @@ With your OpenShift 4 cluster setup, we can now proceed with the demonstration u
     
   Once these are setup, your GitHub Repo secrets page should be as shown below:
   
-  - Initial OpenShift Infrastructure Setup
+- **Initial OpenShift Infrastructure Setup**
   
-    With the necessary secret values now configured, you can now manually trigger the [setup_openshift_infrastructure](./.github/workflows/setup_openshift_infrastructure.yaml) GitHub action which will do the following:
+  With the necessary secret values now configured, you can now manually trigger the [setup_openshift_infrastructure](./.github/workflows/setup_openshift_infrastructure.yaml) GitHub action which will do the following:
     
 
 
