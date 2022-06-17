@@ -9,17 +9,31 @@ Following the steps given in this demo, you will see that by using the OpenShift
     .
     ├── build                   # Compiled files (alternatively `dist`)
     ├── docs                    # Documentation files (alternatively `doc`)
-    ├── src                     # Source files (alternatively `lib` or `app`)
+    ├── Portal                  # Contains the actual files used to configure the generated API DX Portal  
+    │   ├── content
+    │   │   ├── about.md 
+    │   │   ├── readme.md
+    │   │   └── toc.yml
+    │   ├── spec
+    │   │   └── spec1
+    │   │       └── openapi.json     # The API Spec file from which the API SDKs and Docs will be generated
+    │   ├── static
+    │   │   └── images
+    │   │       └── logo.png   
+    │   └── APIMATIC-BUILD.json      # The main APIMatic CodeGen build file that is read by APIMatic CodeGen to process the associated
+    │                                # artifacts and produce the desired SDKs, Docs and API Specs
     ├── k8s                          # K8s yaml files used to set up the DX portal Service, Deployment and OpenShift Route resources
-        ├── deployment.yaml 
-        ├── route.yaml
-        └── service.yaml      
+    │    ├── deployment.yaml 
+    │    ├── route.yaml
+    │    └── service.yaml      
     ├── setup                   
-        ├── codegen.yaml             # K8s APIMatic CodeGen custom resource yaml file
-        └── operatorassets.yaml      # Yaml file containing the OpenShift Pipelines and APIMatic CodeGen Operator installation info
+    │    ├── codegen.yaml             # K8s APIMatic CodeGen custom resource yaml file
+    │    └── operatorassets.yaml      # Yaml file containing the OpenShift Pipelines and 
+    │                                 # APIMatic CodeGen Operator installation info
     ├── LICENSE
     └── README.md
-    └── Dockerfile                   # Dockerfile used to containerize and run the DX portal web server using the Portal artifacts generated using APIMatic CodeGen
+    └── Dockerfile                   # Dockerfile used to containerize and run the DX portal web server 
+                                     # using the Portal artifacts generated using APIMatic CodeGen
 
 ## Prerequisites
 
