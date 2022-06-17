@@ -28,6 +28,10 @@
     │   └── APIMATIC-BUILD.json      # The main APIMatic CodeGen build file that is read by APIMatic CodeGen to process the associated
     │                                # artifacts and produce the desired SDKs, Docs and API Specs
     │
+    ├── docs                         # This directory
+    │   ├── demo_structure.md        # This file
+    │   └── ...                      # images etc.
+    │
     ├── k8s                          # K8s yaml files used to set up the DX portal Service, Deployment and OpenShift Route resources
     │   ├── deployment.yaml 
     │   ├── route.yaml
