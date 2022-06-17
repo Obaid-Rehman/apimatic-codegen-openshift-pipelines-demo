@@ -89,7 +89,11 @@ With your OpenShift 4 cluster setup, we can now proceed with the demonstration u
        "themeOverrides": {
           "themeType": "cool",
           "palette": {
-            "primaryColor": "#CC0000"
+            "primaryColor": "#f44336",
+            "color" : {
+               "C000": "93c47d",
+               "C600": "#3d85c6"
+            }
           }
         },
         "enableExport": true
