@@ -71,7 +71,7 @@ jobs:
           
       - name: Get route
         run: |
-          echo "Click following URL to access the application. Might need to force refresh the browser using Ctrl+F5"
+          echo "Click following URL to access the application:"
           oc get route myroute -n ${{ secrets.OPENSHIFT_PROJECT }} --template='http://{{.spec.host}}'
           
       
