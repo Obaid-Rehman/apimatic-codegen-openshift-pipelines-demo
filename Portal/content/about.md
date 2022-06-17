@@ -1,1 +1,1 @@
-I am from [APIMatic](https://www.apimatic.io/about/). Here is another update.
+You can find out more about the good folks at APIMatic by clicking [here](https://www.apimatic.io/about/). 
