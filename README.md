@@ -63,7 +63,7 @@ With your OpenShift 4 cluster setup, we can now proceed with the demonstration u
 
   With an initial DX Portal set up, you can now make changes in the contents of the [Portal](./Portal/) directory. Once the changes are pushed into the *main* branch, the [main.yaml](./.github/workflows/main.yaml) GitHub action will be triggered which will in turn start up the *build-and-deploy* Tekton pipeline. At the end, you can view the updated DX portal using the route URL as before.
   
-  To demonstrate this, suppose we make the following change to the [APIMATIC-BUILD.json](./Portal/APIMATIC-BUILD.json) file:
+  To demonstrate this, suppose we make the following changes to the [APIMATIC-BUILD.json](./Portal/APIMATIC-BUILD.json) file:
   
   ```json
   {
@@ -103,6 +103,9 @@ With your OpenShift 4 cluster setup, we can now proceed with the demonstration u
   ```
   
   The resulting re-generated portal will now have the following look:
+  
+  You can make these and many more changes by using the [APIMatic CodeGen Build File Reference](https://apimatic-core-v3-docs.netlify.app/#/http/generating-api-portal/build-file-reference).
+  
 
   
     
