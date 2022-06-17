@@ -10,13 +10,16 @@ Following the steps given in this demo, you will see that by using the OpenShift
     ├── build                   # Compiled files (alternatively `dist`)
     ├── docs                    # Documentation files (alternatively `doc`)
     ├── src                     # Source files (alternatively `lib` or `app`)
-    ├── test                    # Automated tests (alternatively `spec` or `tests`)
+    ├── k8s                          # K8s yaml files used to set up the DX portal Service, Deployment and OpenShift Route resources
+        ├── deployment.yaml 
+        ├── route.yaml
+        └── service.yaml      
     ├── setup                   
         ├── codegen.yaml             # K8s APIMatic CodeGen custom resource yaml file
         └── operatorassets.yaml      # Yaml file containing the OpenShift Pipelines and APIMatic CodeGen Operator installation info
     ├── LICENSE
     └── README.md
-    └── Dockerfile
+    └── Dockerfile                   # Dockerfile used to containerize and run the DX portal web server using the Portal artifacts generated using APIMatic CodeGen
 
 ## Prerequisites
 
