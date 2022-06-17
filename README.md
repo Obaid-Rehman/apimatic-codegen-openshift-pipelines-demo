@@ -8,6 +8,12 @@ Following the steps given in this demo, you will see that by using the OpenShift
 
 If you would like to know more about how this project is set up and what the different directories and files are for, you can find that information [here](./docs/demo_structure.md). You can view that information later as it is not necessary to understand it to proceed with the demonstration.
 
+Prior knowledge of Tekton and APIMatic CodeGen is not required for this demonstration as all the required configuration are set up in the [GitHub actions](./.github/workflows/). However, you can find more information on these in the following links:
+
+- [Tekton Docs](https://tekton.dev/docs/)
+
+- [APIMatic CodeGen](https://apimatic-core-v3-docs.netlify.app/#/http/getting-started/overview-apimatic-core)
+
 ## Prerequisites
 
 You need an OpenShift 4 cluster to follow the steps given in this demonstration. If you don't have an existing cluster, go to http://try.openshift.com and register for free in order to get an OpenShift 4 cluster up and running on AWS within minutes.
