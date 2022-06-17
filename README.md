@@ -20,6 +20,7 @@ With your OpenShift 4 cluster setup, we can now proceed with the demonstration u
 
   Fork this repository and add the values for the Repo secrets that will be used to run the initial OpenShift assets set up. These include:
 
-  - #APIMATICLICENSEBLOB#: 
+  - **APIMATICLICENSEBLOB**: This is the APIMatic CodeGen License string that will be used to start up the APIMatic CodeGen instances.
+    
 
 
