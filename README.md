@@ -18,6 +18,8 @@ With your OpenShift 4 cluster setup, we can now proceed with the demonstration u
 
 - Fork This Repo
 
-  Fork this repository and add the values for the Repo secrets that will be used to run the initial OpenShift assets set up. These include 
+  Fork this repository and add the values for the Repo secrets that will be used to run the initial OpenShift assets set up. These include:
+
+  - #APIMATICLICENSEBLOB#: 
 
 
