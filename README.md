@@ -91,7 +91,7 @@ With your OpenShift 4 cluster setup, we can now proceed with the demonstration u
           "palette": {
             "primaryColor": "#f44336",
             "linkColor": "#6aa84f",
-            "color" : {
+            "colors" : {
                "C000": "93c47d",
                "C600": "#3d85c6"
             }
