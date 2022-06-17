@@ -12,4 +12,12 @@ If you would like to know more about how this project is set up and what the dif
 
 You need an OpenShift 4 cluster to follow the steps given in this demonstration. If you don't have an existing cluster, go to http://try.openshift.com and register for free in order to get an OpenShift 4 cluster up and running on AWS within minutes.
 
+## Demonstration
+
+With your OpenShift 4 cluster setup, we can now proceed with the demonstration using the steps given below:
+
+- Fork This Repo
+
+  Fork this repository and add the values for the Repo secrets that will be used to run the initial OpenShift assets set up. These include 
+
 
