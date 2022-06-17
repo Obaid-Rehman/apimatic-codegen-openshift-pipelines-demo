@@ -38,6 +38,12 @@ With your OpenShift 4 cluster setup, we can now proceed with the demonstration u
 - **Initial OpenShift Infrastructure Setup**
   
   With the necessary secret values now configured, you can now manually trigger the [setup_openshift_infrastructure](./.github/workflows/setup_openshift_infrastructure.yaml) GitHub action which will do the following:
+  
+  - Install the [oc](https://github.com/openshift/oc) and [tkn](https://github.com/tektoncd/cli) tools to interact with OpenShift clusters and deploy resources.
+
+  - Login to your OpenShift cluster using the *OPENSHIFT_LOGIN_SERVER* and *OPENSHIFT_LOGIN_TOKEN* GitHub secrets that were set up with the *oc login* command.
+
+  
     
 
 
