@@ -67,12 +67,6 @@ jobs:
           --showlog=true \
           -n ${{ secrets.OPENSHIFT_PROJECT }}
           
-      - run: sleep 150
-          
-      - name: Get route
-        run: |
-          echo "Click following URL to access the application:"
-          oc get route myroute -n ${{ secrets.OPENSHIFT_PROJECT }} --template='http://{{.spec.host}}'
           
       
             
