@@ -40,7 +40,7 @@ With your OpenShift 4 cluster setup, we can now proceed with the demonstration u
     ![Server](./docs/4.PNG)
     
   - **OPENSHIFT_LOGIN_TOKEN**:
-    This is the token value found when you click on the _Copy Login Command_. Copy the value maked by pink:
+    This is the token value found when you click on the _Copy Login Command_. Copy the value maked by purple:
     
     ![Token](./docs/5.PNG)
     
