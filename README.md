@@ -11,9 +11,12 @@ Following the steps given in this demo, you will see that by using the OpenShift
     ├── docs                    # Documentation files (alternatively `doc`)
     ├── src                     # Source files (alternatively `lib` or `app`)
     ├── test                    # Automated tests (alternatively `spec` or `tests`)
-    ├── tools                   # Tools and utilities
+    ├── setup                   
+        ├── codegen.yaml             # K8s APIMatic CodeGen custom resource yaml file
+        └── operatorassets.yaml      # Yaml file containing the OpenShift Pipelines and APIMatic CodeGen Operator installation info
     ├── LICENSE
     └── README.md
+    └── Dockerfile
 
 ## Prerequisites
 
