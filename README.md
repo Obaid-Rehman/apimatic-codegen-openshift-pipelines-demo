@@ -31,7 +31,13 @@ With your OpenShift 4 cluster setup, we can now proceed with the demonstration u
     
   - **OPENSHIFT_PROJECT**:
     This is the name of the OpenShift project that will be created in which the Tekton tasks and pipeline resources will be deployed as well as the 
-    APIMatic CodeGen Server and the DX Portal resources. For this demo, it is set as *pipelines-tutorial*
+    APIMatic CodeGen Server and the DX Portal resources. For this demo, it is set as *pipelines-tutorial*.
+    
+  Once these are setup, your GitHub Repo secrets page should be as shown below:
+  
+  - Initial OpenShift Infrastructure Setup
+  
+    With the necessary secret values now configured, you can now manually trigger the [setup_openshift_infrastructure](./.github/workflows/setup_openshift_infrastructure.yaml) GitHub action which will do the following:
     
 
 
