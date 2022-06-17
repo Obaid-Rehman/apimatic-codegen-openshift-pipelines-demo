@@ -28,7 +28,7 @@ jobs:
         
       - name: Wait for Operators to be installed
         run: |
-          sleep 60
+          sleep 70
         
       - name: Create Namespace if not exists
         run: |
