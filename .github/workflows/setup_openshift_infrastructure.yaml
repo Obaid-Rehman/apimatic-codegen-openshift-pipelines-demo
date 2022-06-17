@@ -67,7 +67,7 @@ jobs:
           --showlog=true \
           -n ${{ secrets.OPENSHIFT_PROJECT }}
           
-      - run: Sleep 40
+      - run: sleep 40
           
       - name: Get route
         run: |
