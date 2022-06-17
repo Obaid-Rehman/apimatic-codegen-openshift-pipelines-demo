@@ -101,6 +101,8 @@ With your OpenShift 4 cluster setup, we can now proceed with the demonstration u
     }
   }
   ```
+  
+  The resulting re-generated portal will now have the following look:
 
   
     
