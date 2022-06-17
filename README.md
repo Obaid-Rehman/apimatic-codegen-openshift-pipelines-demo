@@ -31,7 +31,7 @@ With your OpenShift 4 cluster setup, we can now proceed with the demonstration u
     
   - **OPENSHIFT_PROJECT**:
     This is the name of the OpenShift project that will be created in which the Tekton tasks and pipeline resources will be deployed as well as the 
-    APIMatic CodeGen Server and the DX Portal resources. For this demo, it is set as *pipelines-tutorial*.
+    APIMatic CodeGen Server and the DX Portal resources.
     
   Once these are setup, your GitHub Repo secrets page should be as shown below:
   
@@ -44,6 +44,10 @@ With your OpenShift 4 cluster setup, we can now proceed with the demonstration u
   - Login to your OpenShift cluster with the *oc login* command using the *OPENSHIFT_LOGIN_SERVER* and *OPENSHIFT_LOGIN_TOKEN* GitHub secrets that were set up.
 
   - Install the RedHat Pipelines and APIMatic CodeGen Operator in *AllNamespaces* mode using the [operatorassets.yaml](./setup/operatorsassets.yaml) file.
+
+  - Create an OpenShift project using the *OPENSHIFT_PROJECT* GitHub secret.
+
+  - Update the [codegen.yaml](./setup/codegen.yaml) file, feeding it the *APIMATICLICENSEBLOB* secret value and use *oc apply* command to setup a APIMatic CodeGen resource in the created OpenShift project. The APIMatic CodeGen Operator will see this and create the K8s Deployment and Service resources to spin up the APIMatic CodeGen app and have it ready to accept requests for DX Build generation.
 
   
     
