@@ -66,7 +66,36 @@ With your OpenShift 4 cluster setup, we can now proceed with the demonstration u
   To demonstrate this, suppose we make the following change to the [APIMATIC-BUILD.json](./Portal/APIMATIC-BUILD.json) file:
   
   ```json
-  
+  {
+    "$schema": "https://titan.apimatic.io/api/build/schema",
+    "buildFileVersion": "1",
+    "generatePortal": {
+       "logoUrl": "/static/images/logo.png",
+       "logoLink": "https://www.apimatic.io",
+       "debug": {
+         "publishReport": true
+       },
+       "whiteLabel": true,
+       "apiSpecs": ["spec1"],
+       "languageConfig": {
+         "http": {},
+         "csharp": {},
+         "php": {},
+         "python": {},
+         "ruby": {}
+       },
+       "headIncludes": "  <link href=\"https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i&display=swap\" rel=\"stylesheet\">",
+       "portalSettings": {
+       "themeOverrides": {
+          "themeType": "cool",
+          "palette": {
+            "primaryColor": "#CC0000"
+          }
+        },
+        "enableExport": true
+      }
+    }
+  }
   ```
 
   
