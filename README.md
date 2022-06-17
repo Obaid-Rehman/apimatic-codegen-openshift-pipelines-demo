@@ -28,15 +28,24 @@ With your OpenShift 4 cluster setup, we can now proceed with the demonstration u
 
   - **APIMATICLICENSEBLOB**:
     This is the APIMatic CodeGen License string that will be used to start up the APIMatic CodeGen instances.
+    ![Github secrets](./docs/7.png)
   - **OPENSHIFT_LOGIN_SERVER**:
-    This is the value found when you click on the _Copy login command_ as shown below:
+    This is the value found when you click on the _Copy login command_ as shown below. Copy the values masked by green:
+    ![Login Page](./docs/1.png)
+    ![Click Token](./docs/2.png)
+    ![Credentials](./docs/3.png)
+    ![Server](./docs/4.png)
   - **OPENSHIFT_LOGIN_TOKEN**:
-    This is the server value found when you click on the _Copy login command_ as shown below:
+    This is the token value found when you click on the _Copy Login Command_. Copy the value maked by pink:
+    ![Token](./docs/5.png)
   - **OPENSHIFT_PROJECT**:
     This is the name of the OpenShift project that will be created in which the Tekton tasks and pipeline resources will be deployed as well as the
     APIMatic CodeGen Server and the DX Portal resources.
+    ![Namespace](./docs/6.png)
 
   Once these are setup, your GitHub Repo secrets page should be as shown below:
+
+  ![GitHub Secrets](./docs/8.png)
 
 - **Initial OpenShift Infrastructure Setup**
 
@@ -55,6 +64,9 @@ With your OpenShift 4 cluster setup, we can now proceed with the demonstration u
   - Deploy the Tekton [Tasks and Pipeline](./.tekton/) resources.
 
   - Trigger the [build-and-deploy](./.tekton/pipeline.yaml) pipeline with the configured parameter values. This will set off a sequence of tasks starting with cloning the GitHub repository contents and finishing off with an initial DX portal web server that is externally accessible using the generated OpenShift route.
+
+  ![OpenShift route](./docs/11.png)
+  ![Original Portal View](./docs/12.png)
 
 - **Make Changes and View Results**
 
@@ -102,4 +114,28 @@ With your OpenShift 4 cluster setup, we can now proceed with the demonstration u
 
   The resulting re-generated portal will now have the following look:
 
+  ![Updated Portal View](./docs/16.png)
+
+  Admittedly, not the best-looking API DX portal in the world but the emphasis was on demonstrating the flexibility APIMatic CodeGen offers in tweaking your DX portal to look just the way you want.
+
+  Since this is a CI/CD pipeline demo after all, feel free to keep making changes in the APIMatic Build file, commit the changes and see how your DX portal appearance alters accordingly.
+
   You can make these and many more changes by using the [APIMatic CodeGen Build File Reference](https://apimatic-core-v3-docs.netlify.app/#/http/generating-api-portal/build-file-reference).
+
+## Additional Resources
+
+### Documentation
+
+The complete online documentation for all APIMatic offerings is available at:
+[https://docs.apimatic.io/](https://docs.apimatic.io/)
+
+## Technical Support
+
+Alachisoft [C] provides various sources of technical support.
+
+- Please refer to the [APIMatic contact page](https://www.apimatic.io/contact/) to select a support resource you find suitable for your issue.
+- To request additional features in the future, or if you notice any discrepancy regarding this document, please drop an email to [support@apimatic.io](mailto:support@apimatic.io).
+
+### Copyrights
+
+[C] Copyright 2022 APIMatic
