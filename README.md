@@ -41,7 +41,9 @@ With your OpenShift 4 cluster setup, we can now proceed with the demonstration u
   
   - Install the [oc](https://github.com/openshift/oc) and [tkn](https://github.com/tektoncd/cli) tools to interact with OpenShift clusters and deploy resources as well as trigger Tekton pipelines.
 
-  - Login to your OpenShift cluster using the *OPENSHIFT_LOGIN_SERVER* and *OPENSHIFT_LOGIN_TOKEN* GitHub secrets that were set up with the *oc login* command.
+  - Login to your OpenShift cluster with the *oc login* command using the *OPENSHIFT_LOGIN_SERVER* and *OPENSHIFT_LOGIN_TOKEN* GitHub secrets that were set up.
+
+  - Install the RedHat Pipelines and APIMatic CodeGen Operator in *AllNamespaces* mode using the [operatorassets.yaml](./setup/operatorsassets.yaml) file.
 
   
     
